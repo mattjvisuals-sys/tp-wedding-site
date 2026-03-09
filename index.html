@@ -1,0 +1,1832 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tiny Pockets Music | Wedding Entertainment</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #0a0a0a;
+            --dark: #111111;
+            --dark-surface: #1a1a1a;
+            --dark-border: #2a2a2a;
+            --accent: #c0c0c0;
+            --accent-light: #d9d9d9;
+            --accent-dim: #808080;
+            --white: #f5f2ed;
+            --white-muted: #b8b2a8;
+            --white-dim: #7a756d;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--black);
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ─── NAV ─── */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1.25rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.4s, backdrop-filter 0.4s;
+        }
+
+        nav.scrolled {
+            background: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--dark-border);
+        }
+
+        @keyframes silver-shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+
+        .nav-logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 0;
+            text-decoration: none;
+            padding: 0.4rem 1rem;
+            border: 1px solid var(--accent-dim);
+            position: relative;
+        }
+
+        .nav-logo .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.25em;
+            background: linear-gradient(
+                105deg,
+                #808080 0%,
+                #b0b0b0 20%,
+                #d0d0d0 30%,
+                #f5f5f5 48%,
+                #ffffff 50%,
+                #f5f5f5 52%,
+                #d0d0d0 70%,
+                #b0b0b0 80%,
+                #808080 100%
+            );
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: silver-shimmer 4s ease-in-out infinite;
+            line-height: 1;
+        }
+
+        .nav-logo .logo-divider {
+            width: 1px;
+            height: 1rem;
+            background: var(--accent-dim);
+            margin: 0 0.75rem;
+            opacity: 0.6;
+        }
+
+        .nav-logo .logo-sub {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.55rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            color: var(--accent-dim);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--white-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--white);
+        }
+
+        .nav-cta {
+            background: var(--white);
+            color: var(--black) !important;
+            padding: 0.6rem 1.5rem;
+            border-radius: 2px;
+            font-weight: 600 !important;
+            transition: background 0.3s, transform 0.3s !important;
+        }
+
+        .nav-cta:hover {
+            background: var(--accent-light) !important;
+            color: var(--black) !important;
+            transform: translateY(-1px);
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .nav-toggle span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--white);
+            margin: 5px 0;
+            transition: transform 0.3s, opacity 0.3s;
+        }
+
+        /* ─── HERO ─── */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(
+                135deg,
+                var(--black) 0%,
+                #151515 40%,
+                #1a1a1a 70%,
+                var(--black) 100%
+            );
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 80%;
+            height: 200%;
+            background: radial-gradient(ellipse, rgba(255, 255, 255, 0.03) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .hero-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1300px;
+            margin: 0 auto;
+            width: 100%;
+            padding: 0 3rem;
+            gap: 2rem;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+            flex-shrink: 0;
+            padding-top: 5rem;
+        }
+
+        .hero-video {
+            position: relative;
+            z-index: 1;
+            flex-shrink: 0;
+            width: 480px;
+            max-width: 100%;
+            padding-top: 5rem;
+            align-self: center;
+        }
+
+        .hero-video-wrapper {
+            position: relative;
+            aspect-ratio: 9 / 16;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 2px solid var(--dark-border);
+            background: var(--dark-surface);
+            cursor: pointer;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .hero-video-wrapper:hover {
+            border-color: var(--accent-dim);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5), 0 0 60px rgba(255, 255, 255, 0.04);
+        }
+
+        .hero-video-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            filter: brightness(0.6) grayscale(1);
+            transition: filter 0.4s;
+        }
+
+        .hero-video-wrapper:hover img {
+            filter: brightness(0.45) grayscale(1);
+        }
+
+        .hero-video-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .hero-play-btn {
+            width: 72px;
+            height: 72px;
+            border: 2px solid var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(10, 10, 10, 0.5);
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .hero-video-wrapper:hover .hero-play-btn {
+            background: rgba(255, 255, 255, 0.15);
+            transform: scale(1.08);
+        }
+
+        .hero-play-btn svg {
+            width: 26px;
+            height: 26px;
+            fill: var(--white);
+            margin-left: 3px;
+        }
+
+        .hero-video-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--white);
+        }
+
+        .hero-video-mobile {
+            display: none;
+        }
+
+        .hero-tagline {
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.8rem, 6vw, 5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            color: var(--accent-light);
+        }
+
+        .hero-sub {
+            font-size: 1.15rem;
+            color: var(--white-muted);
+            max-width: 560px;
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background: var(--white);
+            color: var(--black);
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-light);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            display: inline-block;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.85rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-left: 1rem;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .btn-outline:hover {
+            background: var(--white);
+            color: var(--black);
+        }
+
+        /* ─── PAIN / TRUST STRIP ─── */
+        .pain-strip {
+            background: var(--dark);
+            border-top: 1px solid var(--dark-border);
+            border-bottom: 1px solid var(--dark-border);
+            padding: 5rem 3rem;
+        }
+
+        .pain-strip-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .pain-strip h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.6rem, 3vw, 2.2rem);
+            font-weight: 400;
+            line-height: 1.5;
+            color: var(--white-muted);
+            max-width: 800px;
+            margin: 0 auto 3rem;
+        }
+
+        .pain-strip h2 strong {
+            color: var(--white);
+            font-weight: 700;
+        }
+
+        .trust-points {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .trust-point {
+            padding: 2rem;
+        }
+
+        .trust-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+        }
+
+        .trust-label {
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--white-muted);
+            font-weight: 500;
+        }
+
+        /* ─── MEET THE BAND ─── */
+        .meet-band {
+            background: var(--black);
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .meet-band-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 600px;
+        }
+
+        .meet-band-image {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .meet-band-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            display: block;
+            filter: grayscale(1);
+            transition: filter 0.6s;
+        }
+
+        .meet-band-image:hover img {
+            filter: grayscale(0.5) brightness(1.05);
+        }
+
+        .meet-band-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent 70%, var(--black) 100%);
+        }
+
+        .meet-band-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 5rem 4rem;
+        }
+
+        .meet-band-text .section-desc {
+            margin-bottom: 1.5rem;
+        }
+
+        .meet-band-text .section-heading {
+            max-width: 400px;
+        }
+
+        .meet-band-detail {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .meet-band-detail-item {
+            border-left: 2px solid var(--accent-dim);
+            padding-left: 1rem;
+        }
+
+        .meet-band-detail-item .detail-title {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.3rem;
+        }
+
+        .meet-band-detail-item .detail-text {
+            font-size: 0.9rem;
+            color: var(--white-muted);
+            font-weight: 300;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 768px) {
+            .meet-band-inner {
+                grid-template-columns: 1fr;
+                min-height: auto;
+            }
+
+            .meet-band-image {
+                height: 400px;
+            }
+
+            .meet-band-image img {
+                object-position: center 30%;
+            }
+
+            .meet-band-image::after {
+                background: linear-gradient(180deg, transparent 60%, var(--black) 100%);
+            }
+
+            .meet-band-text {
+                padding: 2.5rem 1.5rem 4rem;
+            }
+
+            .meet-band-detail {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ─── PHOTO TICKER ─── */
+        .photo-ticker {
+            background: var(--black);
+            padding: 1.5rem 0;
+            overflow: hidden;
+            border-bottom: 1px solid var(--dark-border);
+        }
+
+        .ticker-track {
+            display: flex;
+            gap: 1rem;
+            animation: ticker-scroll 40s linear infinite;
+            width: max-content;
+        }
+
+        .ticker-track:hover {
+            animation-play-state: paused;
+        }
+
+        .ticker-item {
+            flex-shrink: 0;
+            height: 220px;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .ticker-item img {
+            height: 100%;
+            width: auto;
+            display: block;
+            object-fit: cover;
+            filter: grayscale(1) brightness(0.85);
+            transition: filter 0.4s, transform 0.4s;
+        }
+
+        .ticker-item:hover img {
+            filter: grayscale(0.5) brightness(1.05);
+            transform: scale(1.03);
+        }
+
+        @keyframes ticker-scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* ─── SECTION DEFAULTS ─── */
+        section {
+            padding: 7rem 3rem;
+        }
+
+        .section-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .section-heading {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .section-desc {
+            font-size: 1.05rem;
+            color: var(--white-muted);
+            max-width: 600px;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        /* ─── PACKAGES ─── */
+        #packages {
+            background: var(--black);
+        }
+
+        .packages-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .packages-header .section-desc {
+            margin: 0 auto;
+        }
+
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        .package-card {
+            background: var(--dark-surface);
+            border: 1px solid var(--dark-border);
+            padding: 3rem 2rem;
+            position: relative;
+            transition: border-color 0.3s, transform 0.3s;
+        }
+
+        .package-card:hover {
+            border-color: var(--accent-dim);
+            transform: translateY(-4px);
+        }
+
+        .package-card.featured {
+            border-color: var(--accent);
+            background: linear-gradient(165deg, #1e1e1e, var(--dark-surface));
+        }
+
+        .package-badge {
+            position: absolute;
+            top: -1px;
+            right: 2rem;
+            background: var(--white);
+            color: var(--black);
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            padding: 0.4rem 1rem;
+        }
+
+        .package-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .package-tagline {
+            font-size: 0.85rem;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+
+        .package-features {
+            list-style: none;
+            margin-bottom: 2.5rem;
+        }
+
+        .package-features li {
+            padding: 0.6rem 0;
+            border-bottom: 1px solid var(--dark-border);
+            font-size: 0.9rem;
+            color: var(--white-muted);
+            font-weight: 300;
+        }
+
+        .package-features li::before {
+            content: '\2014';
+            color: var(--accent);
+            margin-right: 0.75rem;
+        }
+
+        .package-cta {
+            display: block;
+            text-align: center;
+            padding: 0.9rem;
+            border: 1px solid var(--accent-dim);
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .package-cta:hover {
+            background: var(--white);
+            color: var(--black);
+        }
+
+        .package-card.featured .package-cta {
+            background: var(--white);
+            color: var(--black);
+            border-color: var(--white);
+        }
+
+        .package-card.featured .package-cta:hover {
+            background: var(--accent-light);
+        }
+
+        /* ─── CINEMATIC BANNER ─── */
+        .cinematic-banner {
+            position: relative;
+            height: 50vh;
+            min-height: 350px;
+            overflow: hidden;
+        }
+
+        .cinematic-banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 30%;
+            filter: grayscale(1);
+        }
+
+        .cinematic-banner::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                180deg,
+                var(--black) 0%,
+                rgba(10, 10, 10, 0.2) 30%,
+                rgba(10, 10, 10, 0.2) 70%,
+                var(--dark) 100%
+            );
+            z-index: 1;
+        }
+
+        .cinematic-banner .banner-text {
+            position: absolute;
+            bottom: 3rem;
+            left: 3rem;
+            z-index: 2;
+        }
+
+        .cinematic-banner .banner-text p {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .cinematic-banner .banner-text p em {
+            color: var(--accent-light);
+            font-style: italic;
+        }
+
+        /* ─── SONG LIST ─── */
+        #songs {
+            background: var(--dark);
+        }
+
+        .songs-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .songs-intro {
+            position: sticky;
+            top: 8rem;
+        }
+
+        .songs-intro .section-desc {
+            margin-bottom: 2rem;
+        }
+
+        .genre-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .genre-tab {
+            background: none;
+            border: 1px solid var(--dark-border);
+            color: var(--white-muted);
+            padding: 0.5rem 1.2rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .genre-tab:hover, .genre-tab.active {
+            border-color: var(--accent);
+            color: var(--white);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .song-columns {
+            columns: 1;
+            column-gap: 2rem;
+        }
+
+        .song-genre-group {
+            break-inside: avoid;
+            margin-bottom: 2.5rem;
+        }
+
+        .song-genre-title {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--dark-border);
+        }
+
+        .song-list {
+            list-style: none;
+        }
+
+        .song-list li {
+            padding: 0.5rem 0;
+            font-size: 0.9rem;
+            color: var(--white-muted);
+            font-weight: 300;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .song-artist {
+            color: var(--white-dim);
+            font-size: 0.8rem;
+        }
+
+        /* ─── BENTO GALLERY ─── */
+        .bento-gallery {
+            background: var(--black);
+            padding: 0;
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-template-rows: auto;
+            gap: 4px;
+        }
+
+        .bento-item {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .bento-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            filter: grayscale(1) brightness(0.8);
+            transition: filter 0.5s, transform 0.6s;
+        }
+
+        .bento-item:hover img {
+            filter: grayscale(0.5) brightness(1.05);
+            transform: scale(1.04);
+        }
+
+        .bento-item:nth-child(1) { grid-column: span 5; aspect-ratio: 16/9; }
+        .bento-item:nth-child(2) { grid-column: span 4; aspect-ratio: 4/3; }
+        .bento-item:nth-child(3) { grid-column: span 3; aspect-ratio: 3/4; }
+        .bento-item:nth-child(4) { grid-column: span 3; aspect-ratio: 3/4; }
+        .bento-item:nth-child(5) { grid-column: span 5; aspect-ratio: 16/9; }
+        .bento-item:nth-child(6) { grid-column: span 4; aspect-ratio: 4/3; }
+
+        /* ─── VIDEO ─── */
+        #video {
+            background: var(--dark);
+        }
+
+        .video-container {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .video-container .section-desc {
+            margin: 0 auto 3rem;
+        }
+
+        .video-wrapper {
+            position: relative;
+            aspect-ratio: 16 / 9;
+            background: var(--dark-surface);
+            border: 1px solid var(--dark-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .video-placeholder {
+            text-align: center;
+        }
+
+        .video-placeholder svg {
+            width: 64px;
+            height: 64px;
+            fill: none;
+            stroke: var(--accent-dim);
+            stroke-width: 1;
+            margin-bottom: 1rem;
+        }
+
+        .video-placeholder p {
+            font-size: 0.85rem;
+            color: var(--white-dim);
+            font-weight: 300;
+        }
+
+        /* ─── TESTIMONIALS ─── */
+        #testimonials {
+            background: var(--black);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial-card {
+            background: var(--dark-surface);
+            border: 1px solid var(--dark-border);
+            padding: 2.5rem;
+            transition: border-color 0.3s;
+        }
+
+        .testimonial-card:hover {
+            border-color: var(--accent-dim);
+        }
+
+        .testimonial-stars {
+            color: var(--accent);
+            font-size: 0.9rem;
+            letter-spacing: 0.15em;
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonial-text {
+            font-size: 0.95rem;
+            color: var(--white-muted);
+            line-height: 1.8;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--white);
+            letter-spacing: 0.05em;
+        }
+
+        .testimonial-role {
+            font-size: 0.75rem;
+            color: var(--white-dim);
+            font-weight: 300;
+        }
+
+        /* ─── CONTACT ─── */
+        #contact {
+            background: var(--dark);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: start;
+        }
+
+        .contact-info .section-heading {
+            max-width: 400px;
+        }
+
+        .contact-details {
+            margin-top: 2rem;
+        }
+
+        .contact-detail {
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-detail-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.3rem;
+        }
+
+        .contact-detail-text {
+            font-size: 0.95rem;
+            color: var(--white-muted);
+            font-weight: 300;
+        }
+
+        .contact-detail-text a {
+            color: var(--white-muted);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-detail-text a:hover {
+            color: var(--white);
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--white-muted);
+            margin-bottom: 0.6rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            background: var(--dark-surface);
+            border: 1px solid var(--dark-border);
+            color: var(--white);
+            padding: 0.9rem 1rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 300;
+            transition: border-color 0.3s;
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--accent);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-group select {
+            appearance: none;
+            cursor: pointer;
+        }
+
+        .form-submit {
+            background: var(--white);
+            color: var(--black);
+            padding: 1rem 2.5rem;
+            border: none;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+            align-self: flex-start;
+        }
+
+        .form-submit:hover {
+            background: var(--accent-light);
+            transform: translateY(-2px);
+        }
+
+        /* ─── FOOTER ─── */
+        footer {
+            background: var(--black);
+            border-top: 1px solid var(--dark-border);
+            padding: 3rem;
+            text-align: center;
+        }
+
+        .footer-logo {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.5rem 1.25rem;
+            border: 1px solid var(--accent-dim);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-logo .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.25em;
+            background: linear-gradient(
+                105deg,
+                #808080 0%,
+                #b0b0b0 20%,
+                #d0d0d0 30%,
+                #f5f5f5 48%,
+                #ffffff 50%,
+                #f5f5f5 52%,
+                #d0d0d0 70%,
+                #b0b0b0 80%,
+                #808080 100%
+            );
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: silver-shimmer 4s ease-in-out infinite;
+            line-height: 1;
+        }
+
+        .footer-logo .logo-divider {
+            width: 1px;
+            height: 1rem;
+            background: var(--accent-dim);
+            margin: 0 0.75rem;
+            opacity: 0.6;
+        }
+
+        .footer-logo .logo-sub {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.55rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            color: var(--accent-dim);
+        }
+
+        .footer-text {
+            font-size: 0.8rem;
+            color: var(--white-dim);
+            font-weight: 300;
+        }
+
+        /* ─── ANIMATIONS ─── */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 1024px) {
+            .packages-grid {
+                grid-template-columns: repeat(2, 1fr);
+                max-width: 700px;
+                margin: 0 auto;
+            }
+
+            .bento-grid {
+                grid-template-columns: repeat(6, 1fr);
+            }
+
+            .bento-item:nth-child(1) { grid-column: span 3; }
+            .bento-item:nth-child(2) { grid-column: span 3; }
+            .bento-item:nth-child(3) { grid-column: span 2; }
+            .bento-item:nth-child(4) { grid-column: span 2; }
+            .bento-item:nth-child(5) { grid-column: span 2; }
+            .bento-item:nth-child(6) { grid-column: span 6; aspect-ratio: 21/9; }
+
+            .songs-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .songs-intro {
+                position: static;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+                max-width: 600px;
+                margin: 3rem auto 0;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(10, 10, 10, 0.98);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 2rem;
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-links a {
+                font-size: 1.1rem;
+            }
+
+            .nav-toggle {
+                display: block;
+                z-index: 1001;
+            }
+
+            section {
+                padding: 4rem 1.5rem;
+            }
+
+            .pain-strip {
+                padding: 3rem 1.5rem;
+            }
+
+            .trust-points {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .ticker-item {
+                height: 150px;
+            }
+
+            .hero-inner {
+                flex-direction: column;
+                text-align: center;
+                padding: 0 1.5rem;
+            }
+
+            .hero-content {
+                max-width: 100%;
+            }
+
+            .hero-video {
+                display: none;
+            }
+
+            .hero-video-mobile {
+                display: block;
+                width: 100%;
+                max-width: 300px;
+                margin: 0 auto 2rem;
+            }
+
+            .hero-sub {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-ctas {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+                align-items: center;
+            }
+
+            .hero-ctas .btn-outline {
+                margin-left: 0;
+            }
+
+            .packages-grid {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .cinematic-banner {
+                height: 35vh;
+                min-height: 250px;
+            }
+
+            .cinematic-banner .banner-text {
+                left: 1.5rem;
+                bottom: 1.5rem;
+            }
+
+            .bento-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .bento-item:nth-child(1) { grid-column: span 4; }
+            .bento-item:nth-child(2) { grid-column: span 2; }
+            .bento-item:nth-child(3) { grid-column: span 2; }
+            .bento-item:nth-child(4) { grid-column: span 2; }
+            .bento-item:nth-child(5) { grid-column: span 2; }
+            .bento-item:nth-child(6) { grid-column: span 4; }
+
+            .form-submit {
+                align-self: stretch;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ─── NAV ─── -->
+<nav>
+    <a href="#" class="nav-logo">
+        <span class="logo-text">Tiny Pockets</span>
+        <span class="logo-divider"></span>
+        <span class="logo-sub">Music</span>
+    </a>
+    <ul class="nav-links">
+        <li><a href="#packages">Packages</a></li>
+        <li><a href="#songs">Songs</a></li>
+        <li><a href="#video">Video</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#contact" class="nav-cta">Get a Quote</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section class="hero">
+    <div class="hero-inner">
+        <div class="hero-content">
+            <p class="hero-tagline">Wedding Entertainment</p>
+            <h1>The soundtrack to your <em>perfect day</em></h1>
+
+            <!-- Mobile video placement -->
+            <div class="hero-video-mobile">
+                <div class="hero-video-wrapper">
+                    <img src="live-14.webp" alt="Tiny Pockets performing live" loading="eager">
+                    <div class="hero-video-overlay">
+                        <div class="hero-play-btn">
+                            <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+                        </div>
+                        <span class="hero-video-label">Watch the Reel</span>
+                    </div>
+                </div>
+            </div>
+
+            <p class="hero-sub">Tiny Pockets delivers unforgettable live music that fills your dance floor, moves your guests to tears during the ceremony, and creates the moments you'll remember forever.</p>
+            <div class="hero-ctas">
+                <a href="#contact" class="btn-primary">Get a Quote</a>
+                <a href="#packages" class="btn-outline">View Packages</a>
+            </div>
+        </div>
+        <div class="hero-video">
+            <div class="hero-video-wrapper">
+                <img src="live-14.webp" alt="Tiny Pockets performing live" loading="eager">
+                <div class="hero-video-overlay">
+                    <div class="hero-play-btn">
+                        <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+                    </div>
+                    <span class="hero-video-label">Watch the Reel</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ─── PAIN / TRUST STRIP ─── -->
+<div class="pain-strip">
+    <div class="pain-strip-inner">
+        <h2>Your wedding music sets the tone for your <strong>entire day</strong>. The wrong band means awkward silences, empty dance floors, and a night you'd rather forget. <strong>We make sure that never happens.</strong></h2>
+        <div class="trust-points">
+            <div class="trust-point fade-up">
+                <div class="trust-number">200+</div>
+                <div class="trust-label">Weddings Performed</div>
+            </div>
+            <div class="trust-point fade-up">
+                <div class="trust-number">5-Star</div>
+                <div class="trust-label">Average Rating</div>
+            </div>
+            <div class="trust-point fade-up">
+                <div class="trust-number">100%</div>
+                <div class="trust-label">Dance Floor Guarantee</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ─── MEET THE BAND ─── -->
+<div class="meet-band">
+    <div class="meet-band-inner">
+        <div class="meet-band-image">
+            <img src="IMG_1668_web.webp" alt="Tiny Pockets band group photo" loading="lazy">
+        </div>
+        <div class="meet-band-text">
+            <p class="section-label">About</p>
+            <h2 class="section-heading fade-up">Meet Your Wedding Band</h2>
+            <p class="section-desc fade-up">We're not a faceless roster act. Tiny Pockets is a tight-knit four-piece who've played together for years, and we bring that chemistry to every celebration. When you book us, you get us — the same lineup, every time.</p>
+            <div class="meet-band-detail fade-up">
+                <div class="meet-band-detail-item">
+                    <div class="detail-title">Vocals & Guitar</div>
+                    <div class="detail-text">Lead vocals, acoustic & electric guitar</div>
+                </div>
+                <div class="meet-band-detail-item">
+                    <div class="detail-title">Saxophone</div>
+                    <div class="detail-text">Alto & tenor sax, backing vocals</div>
+                </div>
+                <div class="meet-band-detail-item">
+                    <div class="detail-title">Guitar</div>
+                    <div class="detail-text">Lead guitar, rhythm & effects</div>
+                </div>
+                <div class="meet-band-detail-item">
+                    <div class="detail-title">Drums</div>
+                    <div class="detail-text">Percussion, electronic pads</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ─── PHOTO TICKER ─── -->
+<div class="photo-ticker">
+    <div class="ticker-track">
+        <div class="ticker-item"><img src="live-01.webp" alt="Tiny Pockets vocalist performing" loading="lazy"></div>
+        <div class="ticker-item"><img src="live-04.webp" alt="Tiny Pockets guitarist singing" loading="lazy"></div>
+        <div class="ticker-item"><img src="live-14.webp" alt="Tiny Pockets vocalist with lighting" loading="lazy"></div>
+        <div class="ticker-item"><img src="live-05.webp" alt="Tiny Pockets drummer in action" loading="lazy"></div>
+        <div class="ticker-item"><img src="live-08.webp" alt="Tiny Pockets sax close-up" loading="lazy"></div>
+        <div class="ticker-item"><img src="live-12.webp" alt="Tiny Pockets band performing together" loading="lazy"></div>
+        <div class="ticker-item"><img src="live-10.webp" alt="Tiny Pockets guitarist with warm glow" loading="lazy"></div>
+        <div class="ticker-item"><img src="live-18.webp" alt="Tiny Pockets drummer lens flare" loading="lazy"></div>
+        <div class="ticker-item"><img src="live-03.webp" alt="Tiny Pockets vocalist energy" loading="lazy"></div>
+        <div class="ticker-item"><img src="live-09.webp" alt="Tiny Pockets guitarist rocking" loading="lazy"></div>
+        <!-- Duplicate for seamless loop -->
+        <div class="ticker-item"><img src="live-01.webp" alt="Tiny Pockets vocalist performing" loading="lazy"></div>
+        <div class="ticker-item"><img src="live-04.webp" alt="Tiny Pockets guitarist singing" loading="lazy"></div>
+        <div class="ticker-item"><img src="live-14.webp" alt="Tiny Pockets vocalist with lighting" loading="lazy"></div>
+        <div class="ticker-item"><img src="live-05.webp" alt="Tiny Pockets drummer in action" loading="lazy"></div>
+        <div class="ticker-item"><img src="live-08.webp" alt="Tiny Pockets sax close-up" loading="lazy"></div>
+        <div class="ticker-item"><img src="live-12.webp" alt="Tiny Pockets band performing together" loading="lazy"></div>
+        <div class="ticker-item"><img src="live-10.webp" alt="Tiny Pockets guitarist with warm glow" loading="lazy"></div>
+        <div class="ticker-item"><img src="live-18.webp" alt="Tiny Pockets drummer lens flare" loading="lazy"></div>
+        <div class="ticker-item"><img src="live-03.webp" alt="Tiny Pockets vocalist energy" loading="lazy"></div>
+        <div class="ticker-item"><img src="live-09.webp" alt="Tiny Pockets guitarist rocking" loading="lazy"></div>
+    </div>
+</div>
+
+<!-- ─── PACKAGES ─── -->
+<section id="packages">
+    <div class="section-inner">
+        <div class="packages-header fade-up">
+            <p class="section-label">Packages</p>
+            <h2 class="section-heading">Your wedding, your way.</h2>
+            <p class="section-desc">Every package includes professional sound, seamless setup, and a band that shows up early, dressed sharp, and ready to make your day unforgettable.</p>
+        </div>
+        <div class="packages-grid">
+            <div class="package-card fade-up">
+                <div class="package-name">Ceremony</div>
+                <div class="package-tagline">Your moment, our music</div>
+                <ul class="package-features">
+                    <li>1 hour of live performance</li>
+                    <li>Acoustic arrangements</li>
+                    <li>Processional & recessional music</li>
+                    <li>Custom first dance song</li>
+                    <li>Professional PA included</li>
+                </ul>
+                <a href="#contact" class="package-cta">Enquire Now</a>
+            </div>
+            <div class="package-card featured fade-up">
+                <div class="package-badge">Most Popular</div>
+                <div class="package-name">Cocktail Hour</div>
+                <div class="package-tagline">Set the mood from the first toast</div>
+                <ul class="package-features">
+                    <li>2 hours of live performance</li>
+                    <li>Jazz, soul & lounge repertoire</li>
+                    <li>Ambient volume for conversation</li>
+                    <li>Professional PA included</li>
+                    <li>Custom song requests welcome</li>
+                </ul>
+                <a href="#contact" class="package-cta">Enquire Now</a>
+            </div>
+            <div class="package-card fade-up">
+                <div class="package-name">Reception</div>
+                <div class="package-tagline">Fill the dance floor all night</div>
+                <ul class="package-features">
+                    <li>3 hours of live performance</li>
+                    <li>Full energy party & dance sets</li>
+                    <li>DJ sets between live sets</li>
+                    <li>Full PA & lighting rig</li>
+                    <li>MC & announcement support</li>
+                    <li>Custom setlist curation</li>
+                </ul>
+                <a href="#contact" class="package-cta">Enquire Now</a>
+            </div>
+            <div class="package-card fade-up">
+                <div class="package-name">The Full Day</div>
+                <div class="package-tagline">Ceremony through last dance</div>
+                <ul class="package-features">
+                    <li>Full day music coverage</li>
+                    <li>Ceremony + cocktail + reception</li>
+                    <li>DJ sets & live band rotation</li>
+                    <li>Premium PA & lighting</li>
+                    <li>Dedicated event coordinator</li>
+                    <li>Overtime available on request</li>
+                </ul>
+                <a href="#contact" class="package-cta">Enquire Now</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ─── CINEMATIC BANNER ─── -->
+<div class="cinematic-banner">
+    <img src="live-02.webp" alt="Tiny Pockets full band performing" loading="lazy">
+    <div class="banner-text">
+        <p>Four musicians. One <em>unforgettable</em> celebration.</p>
+    </div>
+</div>
+
+<!-- ─── SONGS ─── -->
+<section id="songs">
+    <div class="section-inner">
+        <div class="songs-layout">
+            <div class="songs-intro">
+                <p class="section-label">Song List</p>
+                <h2 class="section-heading fade-up">From the ceremony to the last dance</h2>
+                <p class="section-desc fade-up">We curate every setlist to match your day. From your walk down the aisle to the moment the lights come on — every song is chosen with intention.</p>
+                <div class="genre-tabs fade-up">
+                    <button class="genre-tab active" data-genre="all">All Songs</button>
+                    <button class="genre-tab" data-genre="ceremony">Ceremony</button>
+                    <button class="genre-tab" data-genre="soul">Soul & Motown</button>
+                    <button class="genre-tab" data-genre="pop">Pop & Dance</button>
+                    <button class="genre-tab" data-genre="rock">Rock & Indie</button>
+                </div>
+            </div>
+            <div class="song-columns">
+                <div class="song-genre-group" data-genre="ceremony">
+                    <div class="song-genre-title">Ceremony & First Dance</div>
+                    <ul class="song-list">
+                        <li><span>At Last</span><span class="song-artist">Etta James</span></li>
+                        <li><span>Can't Help Falling in Love</span><span class="song-artist">Elvis Presley</span></li>
+                        <li><span>A Thousand Years</span><span class="song-artist">Christina Perri</span></li>
+                        <li><span>Make You Feel My Love</span><span class="song-artist">Adele</span></li>
+                        <li><span>All of Me</span><span class="song-artist">John Legend</span></li>
+                        <li><span>Thinking Out Loud</span><span class="song-artist">Ed Sheeran</span></li>
+                    </ul>
+                </div>
+                <div class="song-genre-group" data-genre="soul">
+                    <div class="song-genre-title">Soul & Motown</div>
+                    <ul class="song-list">
+                        <li><span>Superstition</span><span class="song-artist">Stevie Wonder</span></li>
+                        <li><span>Signed Sealed Delivered</span><span class="song-artist">Stevie Wonder</span></li>
+                        <li><span>September</span><span class="song-artist">Earth, Wind & Fire</span></li>
+                        <li><span>I Got You (I Feel Good)</span><span class="song-artist">James Brown</span></li>
+                        <li><span>Ain't No Mountain High Enough</span><span class="song-artist">Marvin Gaye</span></li>
+                    </ul>
+                </div>
+                <div class="song-genre-group" data-genre="pop">
+                    <div class="song-genre-title">Pop & Dance</div>
+                    <ul class="song-list">
+                        <li><span>Uptown Funk</span><span class="song-artist">Bruno Mars</span></li>
+                        <li><span>Shut Up and Dance</span><span class="song-artist">Walk the Moon</span></li>
+                        <li><span>Don't Stop Me Now</span><span class="song-artist">Queen</span></li>
+                        <li><span>Mr Brightside</span><span class="song-artist">The Killers</span></li>
+                        <li><span>I Wanna Dance With Somebody</span><span class="song-artist">Whitney Houston</span></li>
+                    </ul>
+                </div>
+                <div class="song-genre-group" data-genre="rock">
+                    <div class="song-genre-title">Rock & Indie</div>
+                    <ul class="song-list">
+                        <li><span>Dakota</span><span class="song-artist">Stereophonics</span></li>
+                        <li><span>Valerie</span><span class="song-artist">The Zutons</span></li>
+                        <li><span>Chelsea Dagger</span><span class="song-artist">The Fratellis</span></li>
+                        <li><span>Sweet Child O' Mine</span><span class="song-artist">Guns N' Roses</span></li>
+                        <li><span>Livin' on a Prayer</span><span class="song-artist">Bon Jovi</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ─── BENTO GALLERY ─── -->
+<div class="bento-gallery">
+    <div class="bento-grid">
+        <div class="bento-item"><img src="IMG_1726_web.webp" alt="Tiny Pockets saxophonist" loading="lazy"></div>
+        <div class="bento-item"><img src="live-12.webp" alt="Tiny Pockets band performing together" loading="lazy"></div>
+        <div class="bento-item"><img src="IMG_1762_web.webp" alt="Tiny Pockets drummer" loading="lazy"></div>
+        <div class="bento-item"><img src="IMG_1699_web.webp" alt="Tiny Pockets guitarist" loading="lazy"></div>
+        <div class="bento-item"><img src="live-06.webp" alt="Tiny Pockets live performance" loading="lazy"></div>
+        <div class="bento-item"><img src="IMG_1720_web.webp" alt="Tiny Pockets vocalist" loading="lazy"></div>
+    </div>
+</div>
+
+<!-- ─── VIDEO ─── -->
+<section id="video">
+    <div class="video-container">
+        <p class="section-label">Video</p>
+        <h2 class="section-heading fade-up">See what your wedding will feel like</h2>
+        <p class="section-desc fade-up">Watch Tiny Pockets in action and see exactly what your wedding entertainment will look and feel like.</p>
+        <div class="video-wrapper fade-up">
+            <div class="video-placeholder">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon points="10,8 16,12 10,16" fill="currentColor" stroke="none"/></svg>
+                <p>Video coming soon</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ─── TESTIMONIALS ─── -->
+<section id="testimonials">
+    <div class="section-inner">
+        <p class="section-label">Testimonials</p>
+        <h2 class="section-heading fade-up">Straight from the happy couples</h2>
+        <div class="testimonials-grid">
+            <div class="testimonial-card fade-up">
+                <div class="testimonial-stars">★ ★ ★ ★ ★</div>
+                <p class="testimonial-text">"We were so nervous about picking a band — it's such a huge part of the day. From the first call, Tiny Pockets put us completely at ease. They learned our first dance song from scratch and performed it so beautifully I cried. The dance floor was packed until the venue kicked us out."</p>
+                <p class="testimonial-author">Sarah & James</p>
+                <p class="testimonial-role">Married 2025</p>
+            </div>
+            <div class="testimonial-card fade-up">
+                <div class="testimonial-stars">★ ★ ★ ★ ★</div>
+                <p class="testimonial-text">"Every single guest has asked us who the band was. My mum hasn't stopped talking about them. They read the room perfectly — gentle during dinner, then absolutely brought the house down. Best decision we made for the whole wedding."</p>
+                <p class="testimonial-author">Emily & Tom</p>
+                <p class="testimonial-role">Married 2025</p>
+            </div>
+            <div class="testimonial-card fade-up">
+                <div class="testimonial-stars">★ ★ ★ ★ ★</div>
+                <p class="testimonial-text">"We've been to a lot of weddings and the band always makes or breaks the night. Tiny Pockets absolutely made ours. Professional, charming, and insanely talented. Our only regret is that we can't book them again."</p>
+                <p class="testimonial-author">Rachel & Dan</p>
+                <p class="testimonial-role">Married 2024</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ─── CONTACT ─── -->
+<section id="contact">
+    <div class="section-inner">
+        <div class="contact-grid">
+            <div class="contact-info">
+                <p class="section-label">Get in Touch</p>
+                <h2 class="section-heading fade-up">Start planning your wedding music</h2>
+                <p class="section-desc fade-up">Tell us about your big day and we'll put together a bespoke proposal. No pressure, no hard sell — just a conversation about making your wedding unforgettable.</p>
+                <div class="contact-details fade-up">
+                    <div class="contact-detail">
+                        <div class="contact-detail-label">Email</div>
+                        <div class="contact-detail-text"><a href="mailto:hello@tinypocketsmusic.com">hello@tinypocketsmusic.com</a></div>
+                    </div>
+                    <div class="contact-detail">
+                        <div class="contact-detail-label">Response Time</div>
+                        <div class="contact-detail-text">Within 24 hours</div>
+                    </div>
+                </div>
+            </div>
+            <form class="contact-form fade-up" onsubmit="handleSubmit(event)">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="names">Your Names</label>
+                        <input type="text" id="names" name="names" placeholder="e.g. Sarah & James" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Wedding Date</label>
+                        <input type="date" id="date" name="date">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="venue">Venue</label>
+                        <input type="text" id="venue" name="venue" placeholder="Venue name or location">
+                    </div>
+                    <div class="form-group">
+                        <label for="package">Package Interest</label>
+                        <select id="package" name="package">
+                            <option value="">Select a package</option>
+                            <option value="ceremony">Ceremony</option>
+                            <option value="cocktail">Cocktail Hour</option>
+                            <option value="reception">Reception</option>
+                            <option value="full-day">The Full Day</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="message">Tell Us About Your Day</label>
+                    <textarea id="message" name="message" placeholder="Tell us about your vision — theme, vibe, must-play songs, anything that'll help us make it perfect"></textarea>
+                </div>
+                <button type="submit" class="form-submit">Send Enquiry</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+    <div class="footer-logo">
+        <span class="logo-text">Tiny Pockets</span>
+        <span class="logo-divider"></span>
+        <span class="logo-sub">Music</span>
+    </div>
+    <p class="footer-text">Premium live music for the most important day of your life.</p>
+</footer>
+
+<script>
+    // ─── Scroll nav background
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+        nav.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // ─── Mobile nav toggle
+    const toggle = document.querySelector('.nav-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    toggle.addEventListener('click', () => {
+        navLinks.classList.toggle('open');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => navLinks.classList.remove('open'));
+    });
+
+    // ─── Fade-up on scroll
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // ─── Genre tab filtering
+    document.querySelectorAll('.genre-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            document.querySelectorAll('.genre-tab').forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            const genre = tab.dataset.genre;
+            document.querySelectorAll('.song-genre-group').forEach(group => {
+                if (genre === 'all' || group.dataset.genre === genre) {
+                    group.style.display = '';
+                } else {
+                    group.style.display = 'none';
+                }
+            });
+        });
+    });
+
+    // ─── Form submission
+    function handleSubmit(e) {
+        e.preventDefault();
+        const btn = e.target.querySelector('.form-submit');
+        btn.textContent = 'Sent! We\'ll be in touch.';
+        btn.style.background = 'var(--accent)';
+        setTimeout(() => {
+            btn.textContent = 'Send Enquiry';
+            btn.style.background = '';
+            e.target.reset();
+        }, 3000);
+    }
+</script>
+
+</body>
+</html>
